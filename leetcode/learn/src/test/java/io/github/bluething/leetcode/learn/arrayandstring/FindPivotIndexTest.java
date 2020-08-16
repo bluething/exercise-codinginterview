@@ -11,6 +11,7 @@ public class FindPivotIndexTest {
     @Test
     public void successWhenInputIsRight() {
         Assert.assertEquals(3, pivotIndex(new int[]{1,7,3,6,5,6}));
+        Assert.assertEquals(0, pivotIndex(new int[]{-1,-1,-1,0,1,1}));
     }
 
     private int pivotIndex(int[] nums) {
@@ -19,7 +20,7 @@ public class FindPivotIndexTest {
             return -1;
         int sumLeft = 0;
         int sumRight = 0;
-        for (int i = 1; i < arrLength-2; i++) {
+        for (int i = 0; i < arrLength; i++) {
             sumLeft=0;
             sumRight=0;
             for(int j = 0; j<i; j++) {
