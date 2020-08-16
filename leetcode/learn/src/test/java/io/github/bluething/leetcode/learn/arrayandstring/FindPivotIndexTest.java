@@ -15,24 +15,16 @@ public class FindPivotIndexTest {
     }
 
     private int pivotIndex(int[] nums) {
-        int arrLength = nums.length;
-        if(arrLength == 0 || arrLength == 1 || arrLength == 2)
-            return -1;
-        int sumLeft = 0;
-        int sumRight = 0;
-        for (int i = 0; i < arrLength; i++) {
-            sumLeft=0;
-            sumRight=0;
-            for(int j = 0; j<i; j++) {
-                sumLeft += nums[j];
-            }
-            for (int k = i+1; k < arrLength; k++) {
-                sumRight += nums[k];
-            }
-            if(sumLeft == sumRight) {
+        int sum = 0;
+        int leftSum = 0;
+        for (int x : nums) {
+            sum += x;
+        }
+        for (int i = 0; i < nums.length; i++) {
+            if(leftSum == (sum - leftSum - nums[i])) {
                 return i;
             }
-
+            leftSum += nums[i];
         }
         return -1;
     }
