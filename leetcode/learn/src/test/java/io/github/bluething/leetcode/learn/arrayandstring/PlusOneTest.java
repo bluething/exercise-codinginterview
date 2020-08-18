@@ -15,13 +15,29 @@ public class PlusOneTest {
     }
 
     public int[] plusOne(int[] digits) {
-        int[] arrResult = new int[digits.length];
-        int i=0;
-        for (i=0; i < digits.length-1; i++) {
-            arrResult[i] = digits[i];
+        if(digits == null || digits.length == 0) {
+            return new int[] {1};
         }
-        arrResult[i] = digits[i] + 1;
-        return arrResult;
+        int carry = 1;
+        int digit = 0;
+        for (int i = digits.length-1; i>= 0; i--) {
+            if(digits[i] == 9) {
+                digits[i] = 0;
+            } else {
+                digits[i] += carry;
+                break;
+            }
+        }
+        if(digits[0] == 0) {
+            int[] arrResult = new int[digits.length+1];
+            arrResult[0] = 1;
+            for (int i = 1; i < arrResult.length; i++) {
+                arrResult[i] = digits[i-1];
+            }
+            return arrResult;
+        } else {
+            return digits;
+        }
     }
 
 }
