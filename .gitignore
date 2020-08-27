@@ -2,3 +2,5 @@
 .idea/
 leetcode/.gradle
 leetcode/learn/build
+hackerrank/.gradle
+hackerrank/interviewpreparationkit/build
