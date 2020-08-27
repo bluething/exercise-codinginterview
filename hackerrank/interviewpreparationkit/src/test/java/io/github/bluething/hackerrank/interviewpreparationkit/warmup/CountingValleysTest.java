@@ -34,9 +34,35 @@ public class CountingValleysTest {
         return valley;
     }
 
+    // The hack is we check if sea level back to zero and the step is up
+    private int countingValleysTwo(int n, String s) {
+        char up = 'U';
+        char down = 'D';
+        boolean enterTheValley = false;
+        char[] sChar = s.toCharArray();
+        int seaLevel = 0;
+        int valley = 0;
+        for (int i = 0; i < n; i++) {
+            if(sChar[i] == up) {
+                seaLevel++;
+            } else {
+                seaLevel--;
+            }
+            if(seaLevel == 0 && sChar[i] == up) {
+                valley++;
+            }
+        }
+        return valley;
+    }
+
     @Test
     public void successWhenInputIsRight() {
         Assert.assertEquals(1, countingValleys(8, "UDDDUDUU"));
+    }
+
+    @Test
+    public void usingSecondSolutionSuccessWhenInputIsRight() {
+        Assert.assertEquals(1, countingValleysTwo(8, "UDDDUDUU"));
     }
 
 }
