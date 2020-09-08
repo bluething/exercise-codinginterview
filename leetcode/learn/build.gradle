@@ -2,8 +2,8 @@ plugins {
     id 'java'
 }
 
-group 'io.github.bluething.leetcode'
-version '0.0.1-SNAPSHOT'
+group 'io.github.bluething'
+version '1.0.0-SNAPSHOT'
 
 repositories {
     mavenCentral()

@@ -4,8 +4,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /*
-* The problem https://leetcode.com/explore/learn/card/array-and-string/201/introduction-to-array/1147/
-* */
+ * The problem https://leetcode.com/explore/learn/card/array-and-string/201/introduction-to-array/1147/
+ * */
 public class LargestNumberAtLeastTwiceofOthersTest {
 
     @Test

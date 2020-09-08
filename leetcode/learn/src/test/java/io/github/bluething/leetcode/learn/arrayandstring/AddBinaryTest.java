@@ -1,6 +1,7 @@
-package learn.src.test.java.io.github.bluething.leetcode.learn.arrayandstring;
+package io.github.bluething.leetcode.learn.arrayandstring;
 
 import org.junit.Assert;
+import org.junit.Test;
 
 public class AddBinaryTest {
 
@@ -30,6 +31,8 @@ public class AddBinaryTest {
         return stringBuilder.toString();
     }
 
+    @Test
     public void successWhenInputIsRight() {
+        Assert.assertEquals("100", addBinary("11", "1"));
     }
 }
