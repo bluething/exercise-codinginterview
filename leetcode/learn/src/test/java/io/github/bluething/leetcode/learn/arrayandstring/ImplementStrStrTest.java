@@ -3,38 +3,44 @@ package io.github.bluething.leetcode.learn.arrayandstring;
 import org.junit.Assert;
 import org.junit.Test;
 
+/*
+* The problem https://leetcode.com/explore/learn/card/array-and-string/203/introduction-to-string/1161/
+* Next time try KMP algorithm http://jakeboxer.com/blog/2009/12/13/the-knuth-morris-pratt-algorithm-in-my-own-words/
+* */
 public class ImplementStrStrTest {
     private int strStr(String haystack, String needle) {
-        int idxOf = -1;
-        if (needle.length() > 0 && (needle.length() <= haystack.length())) {
-            char[] haysStacks = haystack.toCharArray();
-            char[] needles = needle.toCharArray();
-            boolean search = true;
-            int i = 0;
-            while (search) {
-                if (haysStacks[i] == needles[0]) {
-                    idxOf = i;
-                    search = false;
-                    for (int j = 1; j < needle.length(); j++) {
-                        if((i + j) == haystack.length()) {
-                            break;
-                        }
-                        if(haysStacks[i + j] != needles[j]) {
-                            idxOf = -1;
-                            search = true;
-                            break;
-                        }
-                    }
-                }
-                i++;
-                if(i == haysStacks.length) {
-                    search = false;
-                }
-            }
-        } else if (needle.length() == 0){
-            idxOf = 0;
+        if(needle == null || haystack == null) {
+            return 0;
         }
-        return idxOf;
+        if(needle.length() == 0) {
+            return 0;
+        }
+        // iterate haystack
+        for (int i = 0; i < haystack.length(); i++) {
+            // we only search until haystack.length() - needle.length()
+            if (i + needle.length() > haystack.length()) {
+                return -1;
+            }
+
+            int j = i;
+            // iterate needle
+            for (int k = 0; k < needle.length(); k++) {
+                // find 1st match
+                if(needle.charAt(k) == haystack.charAt(j)) {
+                    // if match and needle reach the end, return
+                    // all needle character match to haystack substring start from j as much as needle.length()
+                    if(k == needle.length() - 1) {
+                        return i;
+                    }
+                    j++;
+                } else {
+                    // not match, exit needle iteration
+                    break;
+                }
+
+            }
+        }
+        return -1;
     }
 
     @Test
