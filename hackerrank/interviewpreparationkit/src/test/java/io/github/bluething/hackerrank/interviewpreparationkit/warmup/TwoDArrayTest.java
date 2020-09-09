@@ -10,10 +10,10 @@ public class TwoDArrayTest {
     private int hourglassSum(int[][] arr) {
         // if hourglass all -9, then maxSum will be -9 * 7
         int maxSum = -63;
-        int[][] hourglassSums = new int[4][4];
         int sum = 0;
-        for (int i = 0; i < hourglassSums.length; i++) {
-            for (int j = 0; j < hourglassSums[i].length; j++) {
+        // we already know how big hourglass array
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
                 sum = 0;
                 // actually we only need iterate 3 times (num of lines of hourglass)
                 // each line, except 2nd line, we add all the value
