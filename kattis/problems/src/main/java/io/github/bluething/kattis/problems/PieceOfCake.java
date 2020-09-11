@@ -21,5 +21,6 @@ public class PieceOfCake {
         int biggestArea = Integer.max(n-h, h) * Integer.max(n-v, v);
         int biggestVolume = biggestArea * 4;
         System.out.print(biggestVolume);
+        bufferedReader.close();
     }
 }

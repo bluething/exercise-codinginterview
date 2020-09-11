@@ -13,5 +13,6 @@ public class SolvingForCarrots {
             bufferedReader.readLine();
         }
         System.out.print(Integer.valueOf(inputs[1]));
+        bufferedReader.close();
     }
 }

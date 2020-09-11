@@ -20,5 +20,6 @@ public class Pot {
             originalTask += Math.pow(number, pow);
         }
         System.out.println(originalTask);
+        bufferedReader.close();
     }
 }

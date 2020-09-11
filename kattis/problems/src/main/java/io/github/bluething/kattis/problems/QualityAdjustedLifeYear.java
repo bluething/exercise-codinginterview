@@ -15,5 +15,6 @@ public class QualityAdjustedLifeYear {
             qaly += Float.valueOf(input[0]) * Float.valueOf(input[1]);
         }
         System.out.print(qaly);
+        bufferedReader.close();
     }
 }
