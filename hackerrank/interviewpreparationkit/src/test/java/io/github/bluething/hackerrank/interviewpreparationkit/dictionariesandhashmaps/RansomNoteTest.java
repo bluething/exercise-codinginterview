@@ -53,6 +53,38 @@ public class RansomNoteTest {
         return result;
     }
 
+    // try to optimize step 5 and 6
+    // utilize getOrDefault method, check if the value is 0
+    // if false, we decrease the value (until 0)
+    private String checkMagazineSolutionTwo(String[] magazine, String[] note) {
+        String result = "Yes";
+
+        // corner case 1, note array is empty
+        if(note == null || note.length == 0) {
+            result = "No";
+        }
+
+        // corner case 2, note array is greater than the length of the magazine array
+        if(note.length > magazine.length) {
+            result = "No";
+        }
+
+        Map<String, Integer> magazineWords = new HashMap<>();
+        for (String word : magazine) {
+            magazineWords.put(word, magazineWords.getOrDefault(word, 0) + 1);
+        }
+
+        for (String word : note) {
+            if (magazineWords.getOrDefault(word, 0) == 0) {
+                result = "No";
+            } else {
+                magazineWords.put(word, magazineWords.get(word) - 1);
+            }
+        }
+
+        return result;
+    }
+
     @Test
     public void successWhenInputIsRight() {
         String[] magazine = "ive got a lovely bunch of coconuts".split("\\s+");
@@ -65,6 +97,20 @@ public class RansomNoteTest {
         String[] magazine = "two times three is not four".split("\\s+");
         String[] note = "two times two is four".split("\\s+");
         Assert.assertEquals("No", checkMagazine(magazine, note));
+    }
+
+    @Test
+    public void successWhenInputIsRightUsingSolutionTwo() {
+        String[] magazine = "ive got a lovely bunch of coconuts".split("\\s+");
+        String[] note = "ive got some coconuts".split("\\s+");
+        Assert.assertEquals("No", checkMagazineSolutionTwo(magazine, note));
+    }
+
+    @Test
+    public void successWhenInputIsRightCaseTwoUsingSolutionTwo() {
+        String[] magazine = "two times three is not four".split("\\s+");
+        String[] note = "two times two is four".split("\\s+");
+        Assert.assertEquals("No", checkMagazineSolutionTwo(magazine, note));
     }
 
 }
