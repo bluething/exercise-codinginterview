@@ -29,7 +29,7 @@ public class Arrangement {
             System.out.print("\n");
         }
 
-        bufferedReader.readLine();
+        bufferedReader.close();
     }
 
     // clue
