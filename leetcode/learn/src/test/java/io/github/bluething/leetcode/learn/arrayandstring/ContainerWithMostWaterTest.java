@@ -27,20 +27,19 @@ public class ContainerWithMostWaterTest {
     }
 
     private int maxArea(int[] height) {
-        int area = 0;
-        int max = 0;
-        int currHeight = 0;
-        for (int i = 0; i < height.length; i++) {
-            currHeight = height[height.length - 1];
-            for (int j = height.length - 1; j > i; j--) {
-                if (currHeight <= height[j]) {
-                    currHeight = height[j];
 
-                    area = Math.min(height[j], height[i]) * (j - i);
-                    if (max < area) {
-                        max = area;
-                    }
-                }
+        int max = 0;
+        int i = 0;
+        int j = height.length - 1;
+
+        while (j > i) {
+
+            max = Math.max(max, Math.min(height[i], height[j]) * (j-i));
+
+            if (height[i] < height[j]) {
+                i++;
+            } else {
+                j--;
             }
         }
 
