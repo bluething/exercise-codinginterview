@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 // The problem https://www.hackerrank.com/challenges/arrays-ds/problem
-public class ArraysDS {
+public class ArraysDSTest {
 
     @Test
     public void successWhenInputIsRight() {

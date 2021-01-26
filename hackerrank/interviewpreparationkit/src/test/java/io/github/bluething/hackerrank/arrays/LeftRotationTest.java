@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 // The problem https://www.hackerrank.com/challenges/array-left-rotation/problem
-public class LeftRotation {
+public class LeftRotationTest {
 
     @Test
     public void successWhenInputIsRight() {
