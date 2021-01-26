@@ -1,4 +1,4 @@
-package io.github.bluething.hackerrank.practice;
+package io.github.bluething.hackerrank.arrays;
 
 import org.junit.Assert;
 import org.junit.Test;
