@@ -1,6 +1,8 @@
 package io.github.bluething.algoexpert.questions;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 // The problem https://www.algoexpert.io/questions/Two%20Number%20Sum
 public class TwoNumberSum {
@@ -11,21 +13,29 @@ public class TwoNumberSum {
     }
 
     private static int[] twoNumberSum(int[] array, int targetSum) {
-        int[] pairs = {};
+        int[] pairResult = {};
+
+        Map<Integer, Integer> pairCandidate = new HashMap<>();
+        int missingNumber = 0;
+        for (int i = 0; i < array.length; i++) {
+            missingNumber = targetSum - array[i];
+            pairCandidate.put(Integer.valueOf(missingNumber), Integer.valueOf(array[i]));
+        }
 
         for (int i = 0; i < array.length; i++) {
-            for (int j = i + 1; j < array.length; j++) {
-                if (array[i] + array[j] == targetSum) {
-                    pairs = new int[2];
-                    pairs[0] = array[i];
-                    pairs[1] = array[j];
-                }
+            missingNumber = targetSum - array[i];
+            if (pairCandidate.get(Integer.valueOf(array[i])) == Integer.valueOf(missingNumber)) {
+                pairResult = new int[2];
+                pairResult[0] = array[i];
+                pairResult[1] = missingNumber;
             }
         }
 
-        return pairs;
+        return pairResult;
     }
 
     // using 2 pointer, O(n*n)
+    // X + Y = targetSum, X -> current index value, save Y to hash map<Y, X>
+    // next iteration find current index in hashmap
 
 }
