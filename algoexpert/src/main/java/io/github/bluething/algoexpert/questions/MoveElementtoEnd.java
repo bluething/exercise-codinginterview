@@ -8,31 +8,30 @@ import java.util.List;
 public class MoveElementtoEnd {
 
     public static void main(String[] args) {
-        moveElementToEnd(new LinkedList<>(Arrays.asList(new Integer[]{2, 1, 2, 2, 2, 3, 4, 1})), 2).forEach(array -> System.out.println(array));
+        moveElementToEnd(new LinkedList<>(Arrays.asList(new Integer[]{2, 1, 2, 2, 2, 3, 4, 2})), 2).forEach(array -> System.out.println(array));
     }
 
     public static List<Integer> moveElementToEnd(List<Integer> array, int toMove) {
+        Integer temp = Integer.valueOf(0);
         int left = 0;
         int right = array.size() - 1;
         while (left < right) {
-            if (array.get(right).equals(Integer.valueOf(toMove))) {
+            while (left < right && array.get(right).equals(Integer.valueOf(toMove))) {
                 right--;
-            } else if (array.get(left).equals(Integer.valueOf(toMove))){
-                array.add(array.remove(left));
-                right--;
-            } else {
-                left++;
             }
+            if (array.get(left).equals(Integer.valueOf(toMove))) {
+                temp = array.get(right);
+                array.set(right, array.get(left));
+                array.set(left, temp);
+            }
+            left++;
         }
 
         return array;
     }
 
     // The idea is using two pointer, left and right
-    // If value at the end of list equals 2, move pointer to the left
-    // If value at the beginning of list equals 2,
-    // remove the value then add to the list (automatically add to the end of the list and the list will shift left)
-    // move right pointer to the left (because the list will shift left)
-    // If none condition above meet, move left pointer to the right.
-    // This solution need to shift the array, depend on language if the array perform in place.
+    // try to find value equals to toMove at the end of array, if found move right to left
+    // if left most value equals to toMove, swap the value with right place
+    // move left pointer to the left
 }
