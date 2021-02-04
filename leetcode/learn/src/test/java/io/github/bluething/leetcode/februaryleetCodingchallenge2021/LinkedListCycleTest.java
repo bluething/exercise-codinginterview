@@ -25,20 +25,25 @@ public class LinkedListCycleTest {
     private boolean hasCycle(ListNode head) {
         boolean isCycling = false;
 
-        int visitedValue = Integer.MIN_VALUE;
-        while (head != null && !isCycling) {
-            if (head.getVal() == visitedValue) {
+        ListNode firstPointer = head;
+        ListNode secondPointer = head;
+        while (!isCycling && firstPointer != null && secondPointer != null && secondPointer.getNext() != null) {
+            firstPointer = firstPointer.getNext();
+            secondPointer = secondPointer.getNext().getNext();
+            if (firstPointer == secondPointer) {
                 isCycling = true;
             }
-            head.setVal(visitedValue);
-            head = head.getNext();
         }
 
         return isCycling;
     }
 
-    // Change the value with value outside range, if we found same value means cycle
-    // O(n) time O(1) memory
+    // Floyd’s Cycle-Finding Algorithm
+    // use two pointer
+    // 1st pointer move once
+    // 2nd pointer move twice
+    // Distance between 1st and 2nd is +1 every loop
+    // So after n loop they will meet (2nd will overlap 1st) if cyclic
 
     class ListNode {
         private int val;
