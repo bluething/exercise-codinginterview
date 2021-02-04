@@ -38,7 +38,7 @@ public class LinkedListCycleTest {
     }
 
     // We can use Set to save next value, if the value already in Set, set true, else set false\
-    // o(1) memory
+    // O(n) memory
 
     class ListNode {
         private int val;
