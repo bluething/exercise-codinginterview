@@ -25,20 +25,20 @@ public class LinkedListCycleTest {
     private boolean hasCycle(ListNode head) {
         boolean isCycling = false;
 
-        Set<ListNode> uniqueNode = new HashSet<>();
+        int visitedValue = Integer.MIN_VALUE;
         while (head != null && !isCycling) {
-            if (uniqueNode.contains(head)) {
+            if (head.getVal() == visitedValue) {
                 isCycling = true;
             }
-            uniqueNode.add(head);
+            head.setVal(visitedValue);
             head = head.getNext();
         }
 
         return isCycling;
     }
 
-    // We can use Set to save next value, if the value already in Set, set true, else set false\
-    // O(n) memory
+    // Change the value with value outside range, if we found same value means cycle
+    // O(n) time O(1) memory
 
     class ListNode {
         private int val;
