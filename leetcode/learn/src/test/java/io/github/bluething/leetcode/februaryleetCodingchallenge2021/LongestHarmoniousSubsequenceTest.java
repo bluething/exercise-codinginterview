@@ -33,7 +33,7 @@ public class LongestHarmoniousSubsequenceTest {
         }
 
         for (Integer num : frequency.keySet()) {
-            if (frequency.get(num + 1) != null) {
+            if (frequency.containsKey(Integer.valueOf(num + 1))) {
                 counter = Integer.max(frequency.get(num) + frequency.get(num + 1), counter);
             }
         }
