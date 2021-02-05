@@ -26,18 +26,31 @@ public class LongestHarmoniousSubsequenceTest {
 
     private int findLHS(int[] nums) {
         int counter = 0;
-
-        Map<Integer, Integer> frequency = new HashMap<>();
+        int tempCount = 0;
+        boolean isFound = false;
         for (int i = 0; i < nums.length; i++) {
-            frequency.put(Integer.valueOf(nums[i]), frequency.getOrDefault(Integer.valueOf(nums[i]), 0) + 1);
-        }
-
-        for (Integer num : frequency.keySet()) {
-            if (frequency.containsKey(Integer.valueOf(num + 1))) {
-                counter = Integer.max(frequency.get(num) + frequency.get(num + 1), counter);
+            tempCount = 0;
+            isFound = false;
+            for (int j = 0; j < nums.length; j++) {
+                if (nums[j] == nums[i]) {
+                    tempCount++;
+                } else if (nums[j] + 1 == nums[i]) {
+                    tempCount++;
+                    isFound = true;
+                }
+            }
+            if (isFound) {
+                counter = Integer.max(tempCount, counter);
             }
         }
 
         return counter;
     }
+
+    // Using nested loop
+    // The idea is find all element value which is same or > 1
+    // If the value > 1 mark as found then find the max between counter and tempcount
+    // We don't care about the sequence (except we need to print the sequence)
+    // Time complexity O(n ^ 2)
+    // Space complexity O(1)
 }
