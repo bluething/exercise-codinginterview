@@ -15,9 +15,14 @@ public class ShortestDistancetoaCharacterTest {
         Assert.assertArrayEquals(new int[]{3,2,1,0}, shortestToChar("aaab", 'b'));
     }
 
+    @Test
+    public void successWhenInputIsRightThree() {
+        Assert.assertArrayEquals(new int[]{0, 1, 2, 3}, shortestToChar("baaa", 'b'));
+    }
+
     private int[] shortestToChar(String s, char c) {
         int[] distances = new int[s.length()];
-        int pos = Integer.MIN_VALUE / 2;
+        int pos = -1 - s.length();
 
         // from left to right
         for (int i = 0; i < s.length(); i++) {
@@ -27,7 +32,7 @@ public class ShortestDistancetoaCharacterTest {
             distances[i] = i - pos;
         }
 
-        pos = Integer.MAX_VALUE / 2;
+        pos = s.length() * 2;
 
         // from right to left
         for (int i = s.length() - 1; i >= 0; i--) {
