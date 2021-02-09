@@ -3,8 +3,8 @@ package io.github.bluething.leetcode.februaryleetCodingchallenge2021;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Iterator;
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class SimplifyPathTest {
 
@@ -30,40 +30,39 @@ public class SimplifyPathTest {
 
     private String simplifyPath(String path) {
         String[] tokens = path.split("\\/");
+        Deque<String> tokenPaths = new ArrayDeque<>();
         String token = "";
-        Stack<String> paths = new Stack<>();
         for (int i = 0; i < tokens.length; i++) {
             token = tokens[i];
             switch (token) {
                 case "":
-                case ".":
-                    break;
+                    case ".":
+                        break;
                 case "..":
-                    if (!paths.isEmpty()) {
-                        paths.pop();
+                    if (!tokenPaths.isEmpty()) {
+                        tokenPaths.pollLast();
                     }
                     break;
                 default:
-                    paths.push(token);
+                    tokenPaths.offerLast(token);
             }
         }
 
-        StringBuilder canonPath = new StringBuilder("/");
-        Iterator<String> iterator = paths.iterator();
-        while (iterator.hasNext()) {
-            canonPath.append(iterator.next());
+        StringBuilder canonPath = new StringBuilder("");
+        int tokenPathsLength = tokenPaths.size();
+        while (tokenPathsLength > 0) {
             canonPath.append("/");
+            canonPath.append(tokenPaths.pollFirst());
+            tokenPathsLength--;
         }
 
-        if (canonPath.length() > 1 && canonPath.charAt(canonPath.length() -  1) == '/') {
-            canonPath.deleteCharAt(canonPath.length() -  1);
+        if (canonPath.length() == 0) {
+            canonPath.append("/");
         }
 
         return canonPath.toString();
     }
 
-    // The idea is using stack to save the tokens after we split the path by "/"
-    // After we get the stack, we iterate from bottom to top for canon path construction
-    // Question:
-    // 1. Stack naturally LIFO, this solution force the stack to FIFO
+    // The idea is using deque to save the tokens after we split the path by "/"
+    // After we fill deque, we iterate until size 0 and we get and remove the 1st element
 }
