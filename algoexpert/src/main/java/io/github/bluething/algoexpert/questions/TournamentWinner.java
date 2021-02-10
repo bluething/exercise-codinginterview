@@ -21,22 +21,23 @@ public class TournamentWinner {
         Map<String, Integer> teamScores = new HashMap<>();
         ArrayList<String> match = new ArrayList<>();
         Integer result = Integer.valueOf(0);
+        String winner = "";
+        Integer maxScore = Integer.valueOf(0);
         for (int i = 0; i < competitions.size(); i++) {
             result = results.get(i);
             match = competitions.get(i);
             if (result.equals(Integer.valueOf(1))) {
                 teamScores.put(match.get(0), teamScores.getOrDefault(match.get(0), 0) + 3);
+                if (teamScores.get(match.get(0)) > maxScore) {
+                    winner = match.get(0);
+                    maxScore = teamScores.get(match.get(0));
+                }
             } else {
                 teamScores.put(match.get(1), teamScores.getOrDefault(match.get(1), 0) + 3);
-            }
-        }
-
-        String winner = "";
-        Integer maxScore = Integer.valueOf(0);
-        for (Map.Entry<String, Integer> entry : teamScores.entrySet()) {
-            if (entry.getValue() > maxScore) {
-                winner = entry.getKey();
-                maxScore = entry.getValue();
+                if (teamScores.get(match.get(1)) > maxScore) {
+                    winner = match.get(1);
+                    maxScore = teamScores.get(match.get(1));
+                }
             }
         }
 
