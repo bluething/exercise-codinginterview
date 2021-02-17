@@ -17,33 +17,29 @@ public class LetterCasePermutationTest {
 
     private List<String> letterCasePermutation(String S) {
         List<String> permutation = new ArrayList<>();
-        char[] stringSequence = new char[]{};
-        int numOfPermutation = 1 << S.length();
-        for (int i = 1; i <= numOfPermutation; i++) {
-            stringSequence = S.toCharArray();
-            for (int j = 0; j < S.length(); j++) {
-                if (!Character.isDigit(stringSequence[j])) {
-                    if (((i >> j) & 1) == 1) {
-                        if (Character.isUpperCase(stringSequence[j])) {
-                            stringSequence[j] = Character.toLowerCase(stringSequence[j]);
-                        } else {
-                            stringSequence[j] = Character.toUpperCase(stringSequence[j]);
-                        }
-                    }
-                }
-            }
-            permutation.add(new String(stringSequence));
-        }
+        char[] stringSequence = S.toCharArray();
+        permute(permutation, stringSequence, 0);
 
         return permutation;
     }
 
-    // Power set algorithm, number of permutation == 2^n
-    // We find how much we need to get permutation string.
-    // Loop through number of permutation
-    // In each loop we change string to char array and loop
-    // In each loop, we only care about char letter
-    // Check if the index in the set
-    // If true, change the case
-    // It doesn't work if we only permute letter like this case
+    private void permute(List<String> permutation, char[] stringSequence, int index) {
+        if (index == stringSequence.length) {
+            permutation.add(new String(stringSequence));
+            return;
+        }
+
+        if (Character.isDigit(stringSequence[index])) {
+            permute(permutation, stringSequence, index + 1);
+            return;
+        } else {
+            stringSequence[index] = Character.toLowerCase(stringSequence[index]);
+            permute(permutation, stringSequence, index + 1);
+
+            stringSequence[index] = Character.toUpperCase(stringSequence[index]);
+            permute(permutation, stringSequence, index + 1);
+        }
+    }
+
+    // Using recursive
 }
