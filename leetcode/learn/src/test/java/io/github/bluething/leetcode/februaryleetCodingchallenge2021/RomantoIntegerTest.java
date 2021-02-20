@@ -3,9 +3,6 @@ package io.github.bluething.leetcode.februaryleetCodingchallenge2021;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class RomantoIntegerTest {
 
     @Test
@@ -29,114 +26,62 @@ public class RomantoIntegerTest {
     }
 
     private int romanToInt(String s) {
-        Map<String, Integer> romanToIntNumber = new HashMap<>();
-        romanToIntNumber.put("I", Integer.valueOf(1));
-        romanToIntNumber.put("V", Integer.valueOf(5));
-        romanToIntNumber.put("X", Integer.valueOf(10));
-        romanToIntNumber.put("L", Integer.valueOf(50));
-        romanToIntNumber.put("C", Integer.valueOf(100));
-        romanToIntNumber.put("D", Integer.valueOf(500));
-        romanToIntNumber.put("M", Integer.valueOf(1000));
-        romanToIntNumber.put("IV", Integer.valueOf(4));
-        romanToIntNumber.put("IX", Integer.valueOf(9));
-        romanToIntNumber.put("XL", Integer.valueOf(40));
-        romanToIntNumber.put("XC", Integer.valueOf(90));
-        romanToIntNumber.put("CD", Integer.valueOf(400));
-        romanToIntNumber.put("CM", Integer.valueOf(900));
-
         int intNumber = 0;
-        String romanNumber = "";
-        String romanNumberBefore = "";
-        int i = s.length() - 1;
-        for (; i > 0; i--) {
-            romanNumber = String.valueOf(s.charAt(i));
-            romanNumberBefore = s.substring(i - 1, i);
-            switch (romanNumber) {
-                case "I" :
-                    intNumber += romanToIntNumber.get(romanNumber);
-                    break;
-                case "V" :
-                    if (romanNumberBefore.equals("I")) {
-                        intNumber += romanToIntNumber.get(romanNumberBefore + romanNumber);
-                        i--;
-                    } else {
-                        intNumber += romanToIntNumber.get(romanNumber);
-                    }
-                    break;
-                case "X" :
-                    if (romanNumberBefore.equals("I")) {
-                        intNumber += romanToIntNumber.get(romanNumberBefore + romanNumber);
-                        i--;
-                    } else {
-                        intNumber += romanToIntNumber.get(romanNumber);
-                    }
-                    break;
-                case "L" :
-                    if (romanNumberBefore.equals("X")) {
-                        intNumber += romanToIntNumber.get(romanNumberBefore + romanNumber);
-                        i--;
-                    } else {
-                        intNumber += romanToIntNumber.get(romanNumber);
-                    }
-                    break;
-                case "C" :
-                    if (romanNumberBefore.equals("X")) {
-                        intNumber += romanToIntNumber.get(romanNumberBefore + romanNumber);
-                        i--;
-                    } else {
-                        intNumber += romanToIntNumber.get(romanNumber);
-                    }
-                    break;
-                case "D" :
-                    if (romanNumberBefore.equals("C")) {
-                        intNumber += romanToIntNumber.get(romanNumberBefore + romanNumber);
-                        i--;
-                    } else {
-                        intNumber += romanToIntNumber.get(romanNumber);
-                    }
-                    break;
-                case "M" :
-                    if (romanNumberBefore.equals("C")) {
-                        intNumber += romanToIntNumber.get(romanNumberBefore + romanNumber);
-                        i--;
-                    } else {
-                        intNumber += romanToIntNumber.get(romanNumber);
-                    }
-                    break;
-                default :
-                    break;
-            }
-        }
-
-        if (i == 0) {
-            romanNumber = String.valueOf(s.charAt(i));
-            switch (romanNumber) {
-                case "I":
-                    intNumber += romanToIntNumber.get(romanNumber);
-                    break;
-                case "V":
-                    intNumber += romanToIntNumber.get(romanNumber);
-                    break;
-                case "X":
-                    intNumber += romanToIntNumber.get(romanNumber);
-                    break;
-                case "L":
-                    intNumber += romanToIntNumber.get(romanNumber);
-                    break;
-                case "C":
-                    intNumber += romanToIntNumber.get(romanNumber);
-                    break;
-                case "D":
-                    intNumber += romanToIntNumber.get(romanNumber);
-                    break;
-                case "M":
-                    intNumber += romanToIntNumber.get(romanNumber);
-                    break;
-                default:
-                    break;
+        char currentRoman = (char) 0;
+        char nextRoman = (char) 0;
+        for (int i = 0; i < s.length(); i++) {
+            currentRoman = s.charAt(i);
+            nextRoman = i == s.length() - 1 ? '0' : s.charAt(i + 1);
+            if ((currentRoman == 'I' && (nextRoman == 'V' || nextRoman == 'X')) ||
+                    (currentRoman == 'X' && (nextRoman == 'L' || nextRoman == 'C')) ||
+                    (currentRoman == 'C' && (nextRoman == 'D' || nextRoman == 'M'))) {
+                intNumber -= romanCharToInt(currentRoman);
+            } else {
+                intNumber += romanCharToInt(currentRoman);
             }
         }
 
         return intNumber;
     }
+
+    private int romanCharToInt(char romanChar) {
+        int number = 0;
+        switch (romanChar) {
+            case 'I':
+                number = 1;
+                break;
+            case 'V':
+                number = 5;
+                break;
+            case 'X':
+                number = 10;
+                break;
+            case 'L':
+                number = 50;
+                break;
+            case 'C':
+                number = 100;
+                break;
+            case 'D':
+                number = 500;
+                break;
+            case 'M':
+                number = 1000;
+                break;
+            default :
+                number = 0;
+                break;
+        }
+
+        return number;
+    }
+
+    // The key is this condition
+    // I can be placed before V (5) and X (10) to make 4 and 9.
+    // X can be placed before L (50) and C (100) to make 40 and 90.
+    // C can be placed before D (500) and M (1000) to make 400 and 900.
+    // We can translate those condition like subtract currentRoman from number then add nextRoman to number
+    // We doing this one by one from left to right
+    // For example IX
+    // 1st loop subtact I, next loop add X
 }
