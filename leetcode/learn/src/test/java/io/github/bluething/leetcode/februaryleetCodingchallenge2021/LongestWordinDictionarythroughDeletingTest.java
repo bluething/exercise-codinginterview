@@ -3,7 +3,6 @@ package io.github.bluething.leetcode.februaryleetCodingchallenge2021;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
