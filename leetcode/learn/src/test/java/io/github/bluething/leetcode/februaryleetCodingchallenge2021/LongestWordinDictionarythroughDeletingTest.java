@@ -19,17 +19,25 @@ public class LongestWordinDictionarythroughDeletingTest {
         Assert.assertEquals("a", findLongestWord("abpcplea", Arrays.asList("a","b","c")));
     }
 
+    @Test
+    public void successWhenInputIsRightThree() {
+        Assert.assertEquals("nbmxgkduynigvzuyblwjepn", findLongestWord("wsmzffsupzgauxwokahurhhikapmqitytvcgrfpavbxbmmzdhnrazartkzrnsmoovmiofmilihynvqlmwcihkfskwozyjlnpkgdkayioieztjswgwckmuqnhbvsfoevdynyejihombjppgdgjbqtlauoapqldkuhfbynopisrjsdelsfspzcknfwuwdcgnaxpevwodoegzeisyrlrfqqavfziermslnlclbaejzqglzjzmuprpksjpqgnohjjrpdlofruutojzfmianxsbzfeuabhgeflyhjnyugcnhteicsvjajludwizklkkosrpvhhrgkzctzwcghpxnbsmkxfydkvfevyewqnzniofhsriadsoxjmsswgpiabcbpdjjuffnbvoiwotrbvylmnryckpnyemzkiofwdnpnbhkapsktrkkkakxetvdpfkdlwqhfjyhvlxgywavtmezbgpobhikrnebmevthlzgajyrmnbougmrirsxi",
+                Arrays.asList("jpthiudqzzeugzwwsngebdeai", "nbmxgkduynigvzuyblwjepn")));
+    }
+
     private String findLongestWord(String s, List<String> d) {
         String longestWord = "";
         int idxStart = 0;
         int idxCheck = 0;
+        char currentChar = (char) 0;
         for (String word : d) {
             idxStart = 0;
             idxCheck = 0;
             for (int i = 0; i < word.length(); i++) {
-                idxCheck = s.indexOf(word.charAt(i), idxStart);
+                currentChar = word.charAt(i);
+                idxCheck = s.indexOf(currentChar, idxStart);
                 if (idxCheck != -1) {
-                    idxStart = idxCheck;
+                    idxStart = idxCheck + 1;
                 } else {
                     break;
                 }
