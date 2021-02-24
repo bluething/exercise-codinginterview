@@ -3,10 +3,6 @@ package io.github.bluething.leetcode.februaryleetCodingchallenge2021;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
-
 public class ScoreofParenthesesTest {
 
     @Test
@@ -30,54 +26,26 @@ public class ScoreofParenthesesTest {
     }
 
     private int scoreOfParentheses(String S) {
-        TreeofParentheses current = new TreeofParentheses();
-        TreeofParentheses root = current;
-        // create node for every '()'
-        for (int i = 0; i < S.length(); i++) {
-            // for every '(' add node as child
+        int score = 0;
+        int power = 0;
+        for (int i = 1; i < S.length(); i++) {
             if (S.charAt(i) == '(') {
-                TreeofParentheses child = new TreeofParentheses();
-                child.root = current;
-                current.children.add(child);
-                current = child;
+                power++;
+            } else if (S.charAt(i - 1) == '(') {
+                score += 1 << power--;
             } else {
-                // if we find ')' aka the pair is close, we move to the parent
-                current = current.root;
+                power--;
             }
         }
-
-        int score = root.computeScore();
 
         return score;
     }
 
-    class TreeofParentheses {
-        TreeofParentheses root;
-        List<TreeofParentheses> children;
-
-        TreeofParentheses() {
-            children = new ArrayList<>();
-        }
-
-        int computeScore() {
-            // base case
-            if (children.isEmpty()) {
-                return 1;
-            }
-
-            int score = 0;
-            for (TreeofParentheses treeofParentheses : children) {
-                score += treeofParentheses.computeScore();
-            }
-
-            if (root == null) {
-                return score;
-            }
-            
-            return 2 * score;
-        }
-    }
-
-    // The idea is represent balance parentheses string with tree.
-    // Why there are 2 object, root and current?
+    // The idea is when we see problem with doubling operation and an incrementing operation we should at least think about a potential binary solution.
+    // For this case example 4,
+    // "(()(()))" -> "(1 + (1))" -> "2 * (1 + 2 * 1)" -> 2 + 2^2
+    // Start loop from idx=1, we know idx=0 must be '('
+    // If we meet '(' we increase the power
+    // else if we meet at index before '(' "(()(()))" ( and of course we meet ')' ) aka closing parentheses
+    // else we decrease the power -> The rest of ')'
 }
