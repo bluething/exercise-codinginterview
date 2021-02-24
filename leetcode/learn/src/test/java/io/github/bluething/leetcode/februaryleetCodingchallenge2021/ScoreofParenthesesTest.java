@@ -46,6 +46,6 @@ public class ScoreofParenthesesTest {
     // "(()(()))" -> "(1 + (1))" -> "2 * (1 + 2 * 1)" -> 2 + 2^2
     // Start loop from idx=1, we know idx=0 must be '('
     // If we meet '(' we increase the power
-    // else if we meet at index before '(' "(()(()))" ( and of course we meet ')' ) aka closing parentheses
+    // else if we meet at index before '(' "(()(()))" ( and of course we meet ')' ) aka closing parentheses we doubled the value (2 ^ power)
     // else we decrease the power -> The rest of ')'
 }
