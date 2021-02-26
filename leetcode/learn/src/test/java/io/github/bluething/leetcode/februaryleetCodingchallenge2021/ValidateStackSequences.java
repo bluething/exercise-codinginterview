@@ -23,38 +23,26 @@ public class ValidateStackSequences {
     }
 
     private boolean validateStackSequences(int[] pushed, int[] popped) {
-        boolean isValid = true;
         Stack<Integer> sequences = new Stack<>();
         int i = 0;
         int j = 0;
-        while (i < pushed.length || j < popped.length) {
-            if (sequences.isEmpty() && i < pushed.length) {
-                sequences.push(Integer.valueOf(pushed[i]));
-                i++;
-            } else {
-                if (sequences.peek().equals(Integer.valueOf(popped[j]))) {
-                    sequences.pop();
-                    j++;
-                } else {
-                    if (i >= pushed.length) {
-                        isValid = false;
-                        j = popped.length;
-                    } else {
-                        sequences.push(Integer.valueOf(pushed[i]));
-                        i++;
-                    }
-                }
+        while (i < pushed.length) {
+            sequences.push(Integer.valueOf(pushed[i]));
+            i++;
+
+            while (!sequences.isEmpty() && j < popped.length && sequences.peek().equals(Integer.valueOf(popped[j]))) {
+                sequences.pop();
+                j++;
             }
         }
 
-        return isValid;
+        return j == popped.length;
     }
 
-    // Not readable code!
-    // The idea is if the stack (sequences) empty, push the value from pushed
-    // If the stack not empty, we have 2 choices
-    // 1. pop the sequences, if the top stack is equal to current index popped
-    // 2. if top stack not equal to current index popped we need to check
-    // 2.1 if we already at the end of pushed array, it's mean we can't pop with popped array, return false
-    // 2.2 else we push the value from pushed array
+    // More readable solution
+    // The idea is we push value from pushed array
+    // Then if the top of stack is equals to current index of popped, pop it.
+    // Continue it until the the top of stack is not equals to current index of popped.
+    // Or the stack empty
+    // The stack sequence is valid if we reach at the end of popped index (popped all value)
 }
