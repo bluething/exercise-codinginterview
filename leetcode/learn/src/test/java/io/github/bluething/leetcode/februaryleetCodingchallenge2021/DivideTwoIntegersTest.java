@@ -30,14 +30,22 @@ public class DivideTwoIntegersTest {
         Assert.assertEquals(-2147483648, divide(-2147483648, 1));
     }
 
+    @Test
+    public void successWhenInputIsRightSix() {
+        Assert.assertEquals(1, divide(-2147483648,-2147483648));
+    }
+
     private int divide(int dividend, int divisor) {
+        int sign = (dividend < 0 ^ divisor < 0) ? -1 : 1;
         // handle edge case
         if (dividend == Integer.MIN_VALUE && divisor == -1) {
             return Integer.MAX_VALUE;
         }
+        if (dividend == divisor) {
+            return sign;
+        }
 
         int quotient = 0;
-        int sign = (dividend < 0 ^ divisor < 0) ? -1 : 1;
         if (dividend < 0)
             dividend = -dividend;
         if (divisor < 0) {
@@ -66,4 +74,5 @@ public class DivideTwoIntegersTest {
     // We count how many times we can bitwise shift divisor to the left while still staying under dividend
     // Start over with the remaining amount of dividend and repeat this process, adding the results to quotient as we go.
     // However, even I can pass my test cases (which is cover some edge value). Still in some case we hit time Limit Exceeded
+    // So I try to handle those case special
 }
