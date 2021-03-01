@@ -39,4 +39,6 @@ public class DistributeCandiesTest {
 
         return numOfDistinctType;
     }
+
+    // The idea is iterate list when in each iteration we put to Set until we reach maximum candy
 }
