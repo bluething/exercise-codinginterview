@@ -37,4 +37,7 @@ public class SetMismatchTest {
 
         return new int[]{duplicate, missing};
     }
+
+    // O(n) time complexity
+    // O(n) space complexity
 }
