@@ -3,9 +3,6 @@ package io.github.bluething.leetcode.marchleetCodingchallenge2021;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class SetMismatchTest {
 
     @Test
@@ -19,25 +16,32 @@ public class SetMismatchTest {
     }
 
     private int[] findErrorNums(int[] nums) {
-        Set<Integer> uniqueNums = new HashSet<>();
         int duplicate = 0;
         for (int i = 0; i < nums.length; i++) {
-            if (!uniqueNums.add(Integer.valueOf(nums[i]))) {
-                duplicate = nums[i];
-            }
-        }
-
-        int missing = 0;
-        for (int i = 1; i <= nums.length; i++) {
-            if (uniqueNums.add(i)) {
-                missing = i;
+            duplicate = Math.abs(nums[i]);
+            if (nums[duplicate - 1] < 0) {
                 break;
             }
+            nums[duplicate - 1] *= -1;
         }
+
+        int sumArray = 0;
+        for (int i = 0; i < nums.length; i++) {
+            sumArray += Math.abs(nums[i]);
+        }
+
+        int n = nums.length;
+        int missing = (n * (n + 1) / 2) - sumArray + duplicate;
 
         return new int[]{duplicate, missing};
     }
 
+    // In math, sum 1..N is (N * (N + 1) / 2)
+    // The missing number can be find with (N * (N + 1) / 2) - sumArray + duplicate number
+    // Because the value start from 1 to N, we can see this value as an index (minus 1)
+    // Loop the array, get the value as index, visit the index
+    // If the value positive make negative
+    // If the value already negative it's mean we get the duplicate
     // O(n) time complexity
-    // O(n) space complexity
+    // O(1) space complexity
 }
