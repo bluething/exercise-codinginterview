@@ -3,8 +3,6 @@ package io.github.bluething.leetcode.aprilleetCodingchallenge2021;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Stack;
-
 public class PalindromeLinkedListTest {
 
     @Test
@@ -38,6 +36,7 @@ public class PalindromeLinkedListTest {
         prev = slow;
         slow = slow.next;
         prev.next = null;
+        // three-way swap
         while (slow != null) {
             tmp = slow.next;
             slow.next = prev;
