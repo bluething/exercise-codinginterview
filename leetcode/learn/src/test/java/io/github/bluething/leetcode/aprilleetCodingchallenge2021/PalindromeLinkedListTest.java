@@ -26,22 +26,36 @@ public class PalindromeLinkedListTest {
     }
 
     private boolean isPalindrome(ListNode head) {
-        boolean answer = true;
-        Stack<Integer> values = new Stack<>();
-        ListNode traverseHead = head;
-        while (traverseHead != null) {
-            values.push(Integer.valueOf(traverseHead.val));
-            traverseHead = traverseHead.next;
-        }
-        while (head != null) {
-            if (!values.pop().equals(Integer.valueOf(head.val))) {
-                answer = false;
-                break;
-            }
-            head = head.next;
+        ListNode slow = head;
+        ListNode fast = head;
+        ListNode prev;
+        ListNode tmp;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
         }
 
-        return answer;
+        prev = slow;
+        slow = slow.next;
+        prev.next = null;
+        while (slow != null) {
+            tmp = slow.next;
+            slow.next = prev;
+            prev = slow;
+            slow = tmp;
+        }
+
+        fast = head;
+        slow = prev;
+        while (slow != null) {
+            if (fast.val != slow.val) {
+                return false;
+            }
+            fast = fast.next;
+            slow = slow.next;
+        }
+
+        return true;
     }
 
     public class ListNode {
@@ -57,4 +71,12 @@ public class PalindromeLinkedListTest {
             this.val = val; this.next = next;
         }
     }
+
+    // Floyd's Cycle Detection Algorithm.
+    // 2 pointers.
+    // slow, move 1 element.
+    // fast, move twice as slow.
+    // When the fast pointer reaches the end of the list, the slow pointer must then be in the middle.
+    // With slow, we can reverse the back half of the list with the help of another variable to contain a reference to the previous node (prev) and a three-way swap.
+    // prev.next = null prevent cycle (endless loop)
 }
