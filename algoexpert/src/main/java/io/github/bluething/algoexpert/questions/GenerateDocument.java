@@ -36,4 +36,6 @@ public class GenerateDocument {
     // The idea is using map to save characters frequency
     // Iterate document, on each char get current frequency then subtract by 1
     // If the frequency <= 0 return false
+    // Not optimal because we need O(c) space complexity c is number of unique char in characters
+    // Time complexity is O(n + m)
 }
