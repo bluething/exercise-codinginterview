@@ -6,11 +6,18 @@ import java.util.Map;
 public class GenerateDocument {
 
     public static void main(String[] args) {
+        System.out.println("-- solution 1 --");
         System.out.println("case 01: " + generateDocument("Bste!hetsi ogEAxpelrt x ", "AlgoExpert is the Best!"));
         System.out.println("case 02: " + generateDocument("a hsgalhsa sanbjksbdkjba kjx", ""));
         System.out.println("case 03: " + generateDocument(" ", "hello"));
         System.out.println("case 04: " + generateDocument("     ", "     "));
         System.out.println("case 05: " + generateDocument("A", "a"));
+        System.out.println("-- solution 2 --");
+        System.out.println("case 01: " + generateDocumentSolution2("Bste!hetsi ogEAxpelrt x ", "AlgoExpert is the Best!"));
+        System.out.println("case 02: " + generateDocumentSolution2("a hsgalhsa sanbjksbdkjba kjx", ""));
+        System.out.println("case 03: " + generateDocumentSolution2(" ", "hello"));
+        System.out.println("case 04: " + generateDocumentSolution2("     ", "     "));
+        System.out.println("case 05: " + generateDocumentSolution2("A", "a"));
     }
 
     private static boolean generateDocument(String characters, String document) {
@@ -36,6 +43,39 @@ public class GenerateDocument {
     // The idea is using map to save characters frequency
     // Iterate document, on each char get current frequency then subtract by 1
     // If the frequency <= 0 return false
-    // Not optimal because we need O(c) space complexity c is number of unique char in characters
-    // Time complexity is O(n + m)
+    // Optimal because we need O(c) space complexity c is number of unique char in characters. Character have a limited number, so c is not big enough to give an impact
+    // Time complexity is O(m + n)
+
+    private static boolean generateDocumentSolution2(String characters, String document) {
+        boolean canGenerate = true;
+        char currentChar = (char) 0;
+        int charactersFreq = 0;
+        int documentFreq = 0;
+        for (int i = 0; i < document.length(); i++) {
+            currentChar = document.charAt(i);
+            charactersFreq = charFreqInString(currentChar, characters);
+            documentFreq = charFreqInString(currentChar, document);
+            if (documentFreq > charactersFreq) {
+                canGenerate = false;
+                break;
+            }
+        }
+
+        return canGenerate;
+    }
+    private static int charFreqInString(char c, String s) {
+        int freq = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == c) {
+                freq++;
+            }
+        }
+
+        return freq;
+    }
+    // The idea is iterate through document, get the char
+    // For each char find the frequency in characters and document
+    // If frequency in document greater than frequency in characters return false
+    // I though it more optimize that the 1st solution because this solution need O(1) space
+    // But I'm wrong, the time complexity is O(m * (n + m)). We have implicit nested loop.
 }
