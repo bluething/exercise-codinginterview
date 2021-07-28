@@ -47,4 +47,10 @@ public class ProductSum {
         }
         return sum * multiplier;
     }
+
+    // The logic is simple, iterate through array and sum the value
+    // If the value is a List, then call the function again until we get the integer
+    // The problem is we need to count how depth is the inner array, this is the function of multiplier variable
+    // We initialize by 1, every time we iterate the inner array, increment by 1
+    // Careful with this, we can't use post/pre increment unary operator
 }
