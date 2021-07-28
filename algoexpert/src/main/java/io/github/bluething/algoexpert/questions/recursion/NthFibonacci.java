@@ -1,4 +1,4 @@
-package io.github.bluething.algoexpert.questions;
+package io.github.bluething.algoexpert.questions.recursion;
 
 public class NthFibonacci {
     public static void main(String[] args) {
