@@ -40,7 +40,7 @@ public class ProductSum {
         for (Object obj : array) {
             if (obj instanceof List) {
                 List<Object> values = (List<Object>) obj;
-                sum += productSumRec(values, multiplier++);
+                sum += productSumRec(values, multiplier + 1);
             } else {
                 sum += (int) obj;
             }
