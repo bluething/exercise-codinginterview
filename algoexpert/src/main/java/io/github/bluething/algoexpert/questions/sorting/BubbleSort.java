@@ -6,8 +6,11 @@ public class BubbleSort {
     public static void main(String[] args) {
         System.out.println(Arrays.equals(bubbleSort(new int[]{8, 5, 2, 9, 5, 6, 3}), new int[]{2, 3, 5, 5, 6, 8, 9}));
         System.out.println(Arrays.equals(bubbleSort2(new int[]{8, 5, 2, 9, 5, 6, 3}), new int[]{2, 3, 5, 5, 6, 8, 9}));
+        System.out.println(Arrays.equals(bubbleSort3(new int[]{8, 5, 2, 9, 5, 6, 3}), new int[]{2, 3, 5, 5, 6, 8, 9}));
     }
 
+    // this is selection sort algorithm
+    // bubble sort compare 2 adjacent value for each loop
     private static int[] bubbleSort(int[] array) {
         int temp = 0;
         for (int i = 0; i < array.length; i++) {
@@ -41,6 +44,29 @@ public class BubbleSort {
                 break;
             }
         }
+        return array;
+    }
+
+    // This is bubble sort!
+    // The sorting here is done on the basis of the largest to the smallest element.
+    // The largest element is first kept in the last location in the array.
+    private static int[] bubbleSort3(int[] array) {
+        boolean isSorted = false;
+        int counter = 0;
+        int temp = 0;
+        while (!isSorted) {
+            isSorted = true;
+            for (int i = 0; i < array.length - 1 - counter; i++) {
+                if (array[i] > array[i + 1]) {
+                    temp = array[i + 1];
+                    array[i + 1] = array[i];
+                    array[i] = temp;
+                    isSorted = false;
+                }
+            }
+            counter++;
+        }
+
         return array;
     }
 
