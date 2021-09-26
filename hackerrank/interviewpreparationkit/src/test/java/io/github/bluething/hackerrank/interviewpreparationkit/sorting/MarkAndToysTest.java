@@ -24,7 +24,8 @@ public class MarkAndToysTest {
         int counter = 0;
         int lastWorkingIdx = prices.size() - 1;
         boolean isSorted = false;
-        while (!isSorted) {
+        boolean isBudgetExceed = false;
+        while (!isSorted && !isBudgetExceed) {
             isSorted = true;
             lastWorkingIdx = prices.size() - 1 - counter;
 
@@ -36,10 +37,14 @@ public class MarkAndToysTest {
                     isSorted = false;
                 }
             }
+
             if (k - prices.get(lastWorkingIdx) > 0) {
                 k -= prices.get(lastWorkingIdx);
                 numOfToys++;
+            } else {
+                isBudgetExceed = true;
             }
+
             counter++;
         }
 
