@@ -5,6 +5,7 @@ import java.util.Arrays;
 public class SelectionSort {
     public static void main(String[] args) {
         System.out.println(Arrays.equals(selectionSort(new int[]{8, 5, 2, 9, 5, 6, 3}), new int[]{2, 3, 5, 5, 6, 8, 9}));
+        System.out.println(Arrays.equals(selectionSort(new int[]{2, 1}), new int[]{1, 2}));
     }
 
     private static int[] selectionSort(int[] array) {
@@ -12,16 +13,23 @@ public class SelectionSort {
             return new int[]{};
         }
 
+        int startIdx = 0;
+        int currentSmallestIdx = 0;
         int temp = 0;
 
-        for (int i = 0; i < array.length; i++) {
-            for (int j = i+1; j < array.length; j++) {
-                if (array[i] > array[j]) {
-                    temp = array[j];
-                    array[j] = array[i];
-                    array[i] = temp;
+        while (startIdx < array.length - 1) {
+            currentSmallestIdx = startIdx;
+            for (int i = startIdx + 1; i < array.length; i++) {
+                if (array[currentSmallestIdx] > array[i]) {
+                    currentSmallestIdx = i;
                 }
             }
+
+            temp = array[currentSmallestIdx];
+            array[currentSmallestIdx] = array[startIdx];
+            array[startIdx] = temp;
+
+            startIdx++;
         }
 
         return array;
