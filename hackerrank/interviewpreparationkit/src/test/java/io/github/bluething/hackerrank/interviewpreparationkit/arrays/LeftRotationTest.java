@@ -1,4 +1,4 @@
-package io.github.bluething.hackerrank.arrays;
+package io.github.bluething.hackerrank.interviewpreparationkit.arrays;
 
 import org.junit.Assert;
 import org.junit.Test;
