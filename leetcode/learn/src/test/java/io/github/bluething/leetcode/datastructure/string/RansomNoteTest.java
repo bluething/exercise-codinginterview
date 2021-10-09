@@ -23,6 +23,21 @@ public class RansomNoteTest {
         Assert.assertTrue(canConstruct("aa", "aab"));
     }
 
+    @Test
+    public void case01WithSolution2() {
+        Assert.assertFalse(canConstruct2("a", "b"));
+    }
+
+    @Test
+    public void case02WithSolution2() {
+        Assert.assertFalse(canConstruct2("aa", "ab"));
+    }
+
+    @Test
+    public void case03WithSolution3() {
+        Assert.assertTrue(canConstruct2("aa", "aab"));
+    }
+
     private boolean canConstruct(String ransomNote, String magazine) {
         if (ransomNote == null || ransomNote.length() == 0) {
             return false;
@@ -53,5 +68,24 @@ public class RansomNoteTest {
         }
 
         return isValid;
+    }
+
+    private boolean canConstruct2(String ransomNote, String magazine) {
+        int[] counterChar = new int[26];
+        int count = 0;
+
+        for (int i = 0; i < ransomNote.length(); i++) {
+            counterChar[ransomNote.charAt(i) - 'a']++;
+            count++;
+        }
+
+        for (int i = 0; i < magazine.length(); i++) {
+            if (counterChar[magazine.charAt(i) - 'a'] > 0) {
+                counterChar[magazine.charAt(i) - 'a']--;
+                count--;
+            }
+        }
+
+        return count == 0;
     }
 }
