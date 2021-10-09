@@ -18,6 +18,11 @@ public class ValidAnagramTest {
         Assert.assertFalse(isAnagram("rat", "car"));
     }
 
+    @Test
+    public void case01WithSolution2() {
+        Assert.assertTrue(isAnagram2("anagram", "nagaram"));
+    }
+
     private boolean isAnagram(String s, String t) {
         if (s.length() != t.length()) {
             return false;
@@ -44,5 +49,25 @@ public class ValidAnagramTest {
         }
 
         return isValid;
+    }
+    
+    private boolean isAnagram2(String s, String t) {
+        int[] count = new int[26];
+
+        for (int i = 0; i < s.length(); i++) {
+            count[s.charAt(i) - 'a']++;
+        }
+
+        for (int i = 0; i < t.length(); i++) {
+            count[t.charAt(i) - 'a']--;
+        }
+
+        for (int n : count) {
+            if (n != 0) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
