@@ -50,7 +50,7 @@ public class ValidAnagramTest {
 
         return isValid;
     }
-    
+
     private boolean isAnagram2(String s, String t) {
         int[] count = new int[26];
 
