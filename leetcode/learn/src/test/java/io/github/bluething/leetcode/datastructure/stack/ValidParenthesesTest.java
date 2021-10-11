@@ -45,34 +45,34 @@ public class ValidParenthesesTest {
     }
 
     private boolean isValid(String s) {
-        if (s == null || s.length() == 0) {
-            return false;
-        }
-
-        Map<Character, Character> pairs = new HashMap<>();
-        pairs.put(')', '(');
-        pairs.put('}', '{');
-        pairs.put(']', '[');
         Stack<Character> parentheses = new Stack<>();
-        parentheses.push(s.charAt(0));
-        Character current = Character.MIN_VALUE;
-        for (int i = 1; i < s.length(); i++) {
+        char current = '\0';
+        for (int i = 0; i < s.length(); i++) {
             current = s.charAt(i);
-            if (current.equals('(') || current.equals('{') || current.equals('[')) {
+            if (current == '(' || current == '{' || current == '[') {
                 parentheses.push(current);
             } else {
-                if (pairs.get(current).equals(parentheses.peek())) {
-                    parentheses.pop();
-                } else {
+                if (parentheses.isEmpty()) {
                     return false;
+                }
+                if (current == ')' && parentheses.pop() != '(') {
+                    return false;
+                }
+                if (current == '}' && parentheses.pop() != '{') {
+                    return false;
+                }
+                if (current == ']' && parentheses.pop() != '[') {
+                    return  false;
                 }
             }
         }
-
-        if (!parentheses.empty()) {
-            return false;
-        }
-
-        return true;
+         return  parentheses.isEmpty();
     }
+    //An input string is valid if:
+    //
+    //Open brackets must be closed by the same type of brackets.
+    //Open brackets must be closed in the correct order.
+    //
+    // no need to check equality between top of stack and current before we pop
+    // just pop it and see if the value match the current
 }
