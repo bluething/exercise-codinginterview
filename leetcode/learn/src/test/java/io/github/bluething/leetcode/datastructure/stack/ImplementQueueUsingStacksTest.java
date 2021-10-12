@@ -26,25 +26,29 @@ public class ImplementQueueUsingStacksTest {
         }
 
         public void push(int x) {
-            while (!firstStack.empty()) {
-                secondStack.push(firstStack.pop());
-            }
             firstStack.push(x);
-            while (!secondStack.empty()) {
-                firstStack.push(secondStack.pop());
-            }
         }
 
         public int pop() {
-            return firstStack.pop();
+            if (secondStack.empty()) {
+                while (!firstStack.empty()) {
+                    secondStack.push(firstStack.pop());
+                }
+            }
+            return secondStack.pop();
         }
 
         public int peek() {
-            return firstStack.peek();
+            if (secondStack.empty()) {
+                while (!firstStack.empty()) {
+                    secondStack.push(firstStack.pop());
+                }
+            }
+            return secondStack.peek();
         }
 
         public boolean empty() {
-            return firstStack.empty();
+            return firstStack.empty() && secondStack.empty();
         }
     }
 }
