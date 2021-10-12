@@ -47,7 +47,7 @@ public class BinaryTreePreorderTraversalTest {
         if (root == null) {
             return new ArrayList<>();
         }
-        
+
         List<Integer> values = new ArrayList<>();
         TreeNode temp = new TreeNode();
 
