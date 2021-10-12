@@ -43,6 +43,13 @@ public class BinaryTreePreorderTraversalTest {
         return values;
     }
 
+    // the idea is using stack to save the node
+    // init the stack with the root
+    // until stack empty, do
+    // assign top of the stack to temp and assign the value to the list
+    // check for the right, if not null push the value
+    // check for the left, if not null push the value
+    // why check rigth 1st? Because proceed the left side 1st
     private List<Integer> preorderTraversalIteration(TreeNode root) {
         if (root == null) {
             return new ArrayList<>();
