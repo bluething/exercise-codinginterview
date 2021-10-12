@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Stack;
 
 public class BinaryTreePreorderTraversalTest {
 
@@ -20,6 +21,17 @@ public class BinaryTreePreorderTraversalTest {
         Assert.assertEquals(expectation, preorderTraversal(one));
     }
 
+    @Test
+    public void case02() {
+        TreeNode three = new TreeNode(3);
+        TreeNode two = new TreeNode(2, three, null);
+        TreeNode one = new TreeNode(1, null, two);
+
+        List<Integer> expectation = Arrays.asList(1, 2, 3);
+
+        Assert.assertEquals(expectation, preorderTraversalIteration(one));
+    }
+
     private List<Integer> preorderTraversal(TreeNode root) {
         if (root == null) {
             return new ArrayList<>();
@@ -27,6 +39,32 @@ public class BinaryTreePreorderTraversalTest {
 
         List<Integer> values = new ArrayList<>();
         root.preorderTraversalRecursion(root, values);
+
+        return values;
+    }
+
+    private List<Integer> preorderTraversalIteration(TreeNode root) {
+        if (root == null) {
+            return new ArrayList<>();
+        }
+        
+        List<Integer> values = new ArrayList<>();
+        TreeNode temp = new TreeNode();
+
+        Stack<TreeNode> nodes = new Stack<>();
+        nodes.push(root);
+
+        while (!nodes.empty()) {
+            temp = nodes.pop();
+            values.add(temp.value);
+
+            if (temp.right != null) {
+                nodes.push(temp.right);
+            }
+            if (temp.left != null) {
+                nodes.push(temp.left);
+            }
+        }
 
         return values;
     }
