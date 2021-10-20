@@ -15,6 +15,16 @@ public class ReverseWordsinaString3Test {
         Assert.assertEquals("doG gniD", reverseWords("God Ding"));
     }
 
+    @Test
+    public void case03() {
+        Assert.assertEquals("s'teL ekat edoCteeL tsetnoc", reverseWordsWithoutStringBuilder("Let's take LeetCode contest"));
+    }
+
+    @Test
+    public void case04() {
+        Assert.assertEquals("doG gniD", reverseWordsWithoutStringBuilder("God Ding"));
+    }
+
     private String reverseWords(String s) {
         StringBuilder result = new StringBuilder();
         String[] tokens = s.split("\\s+");
@@ -37,5 +47,36 @@ public class ReverseWordsinaString3Test {
             result.append(new String(charS)).append(" ");
         }
         return result.deleteCharAt(result.length() - 1).toString();
+    }
+
+    private String reverseWordsWithoutStringBuilder(String s) {
+        char[] tokens = s.toCharArray();
+        for (int i = 0; i < tokens.length; i++) {
+            if (tokens[i] != ' ') {
+                int j = i;
+                // increment j until find space or reach the end of sting
+                while (j + 1 < tokens.length && tokens[j+1] != ' ') {
+                    j++;
+                }
+
+                // reverse the token from i to j
+                int right = j;
+                int left = i;
+                char temp = (char) 0;
+                while (left < right) {
+                    temp = tokens[right];
+                    tokens[right] = tokens[left];
+                    tokens[left] = temp;
+
+                    left++;
+                    right--;
+                }
+
+                // i become j
+                i = j;
+            }
+        }
+
+        return new String(tokens);
     }
 }
