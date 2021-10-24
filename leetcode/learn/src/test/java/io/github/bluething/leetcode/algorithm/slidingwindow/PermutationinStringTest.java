@@ -30,14 +30,18 @@ public class PermutationinStringTest {
             s2CharCount[s2.charAt(i) - 'a']++;
         }
 
-        // start sliding window technique
+        // start sliding window technique with length == s1.length()
+        // front = i
+        // back = i + s1.length()
         for (int i = 0; i < s2.length() - s1.length(); i++) {
             // if both array is equals, return true
             if (matches(s1CharCount, s2CharCount)) {
                 return true;
             }
-
+            
+            // count char at back
             s2CharCount[s2.charAt(i + s1.length()) - 'a']++;
+            // decrease char at front
             s2CharCount[s2.charAt(i) - 'a']--;
         }
 
