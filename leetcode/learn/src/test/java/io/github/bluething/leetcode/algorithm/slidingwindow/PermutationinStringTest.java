@@ -54,7 +54,7 @@ public class PermutationinStringTest {
                 return true;
             }
 
-            // count char at back
+            // increment char at back
             s2CharCount[s2.charAt(i + s1.length()) - 'a']++;
             // decrease char at front
             s2CharCount[s2.charAt(i) - 'a']--;
