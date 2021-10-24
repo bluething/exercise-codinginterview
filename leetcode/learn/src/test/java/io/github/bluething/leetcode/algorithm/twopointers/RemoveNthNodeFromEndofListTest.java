@@ -64,6 +64,62 @@ public class RemoveNthNodeFromEndofListTest {
         Assert.assertEquals(expected, actual);
     }
 
+    @Test
+    public void case04() {
+        ListNode five = new ListNode(5);
+        ListNode four = new ListNode(4, five);
+        ListNode three = new ListNode(3, four);
+        ListNode two = new ListNode(2, three);
+        ListNode one = new ListNode(1, two);
+
+        ListNode result = removeNthFromEndUsingCounter(one, 2);
+
+        List<Integer> actual = new ArrayList<>();
+        while (result != null) {
+            actual.add(result.val);
+            result = result.next;
+        }
+
+        List<Integer> expected = Arrays.asList(1,2,3,5);
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void case05() {
+        ListNode one = new ListNode(1);
+
+        ListNode result = removeNthFromEndUsingCounter(one, 1);
+
+        List<Integer> actual = new ArrayList<>();
+        while (result != null) {
+            actual.add(result.val);
+            result = result.next;
+        }
+
+        List<Integer> expected = Arrays.asList();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void case06() {
+        ListNode two = new ListNode(2);
+        ListNode one = new ListNode(1, two);
+
+        ListNode result = removeNthFromEndUsingCounter(one, 1);
+
+        List<Integer> actual = new ArrayList<>();
+        while (result != null) {
+            actual.add(result.val);
+            result = result.next;
+        }
+
+        List<Integer> expected = Arrays.asList(1);
+
+        Assert.assertEquals(expected, actual);
+    }
+
     private ListNode removeNthFromEnd(ListNode head, int n) {
         if (head == null) {
             return null;
@@ -87,6 +143,32 @@ public class RemoveNthNodeFromEndofListTest {
         }
 
         slow.next = slow.next.next;
+
+        return head;
+    }
+
+    private ListNode removeNthFromEndUsingCounter(ListNode head, int n) {
+        ListNode pointer = head;
+        int size = 0;
+        while (pointer != null) {
+            size++;
+            pointer = pointer.next;
+        }
+
+        // edge case, single element
+        if (size == 1 && n == 1) {
+            return null;
+        }
+
+        if (size == n) {
+            return head.next;
+        }
+
+        pointer = head;
+        for (int i = 1; i <= size - n - 1; i++) {
+            pointer = pointer.next;
+        }
+        pointer.next = pointer.next.next;
 
         return head;
     }
