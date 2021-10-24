@@ -58,7 +58,7 @@ public class LongestSubstringWithoutRepeatingCharactersTest {
                 // if found duplicate
                 // remove from chars that equal to s.charAt(start)
                 // increment the start
-                // after loop, start will point to the next 1st duplicate char
+                // after loop, start will point to the next 1st duplicate char -> start the new window
                 while (chars.contains(sChar)) {
                     chars.remove(s.charAt(start));
                     start++;
