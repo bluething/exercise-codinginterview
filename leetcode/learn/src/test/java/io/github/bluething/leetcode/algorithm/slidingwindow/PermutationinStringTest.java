@@ -14,6 +14,21 @@ public class PermutationinStringTest {
         Assert.assertFalse(checkInclusion("ab", "eidboaoo"));
     }
 
+    @Test
+    public void case03() {
+        Assert.assertTrue(checkInclusion("ab", "eidoooba"));
+    }
+
+    @Test
+    public void case04() {
+        Assert.assertTrue(checkInclusion("ab", "eidooobba"));
+    }
+
+    @Test
+    public void case05() {
+        Assert.assertTrue(checkInclusion("abb", "eidooobba"));
+    }
+
     private boolean checkInclusion(String s1, String s2) {
         if (s1.length() > s2.length()) {
             return false;
@@ -38,7 +53,7 @@ public class PermutationinStringTest {
             if (matches(s1CharCount, s2CharCount)) {
                 return true;
             }
-            
+
             // count char at back
             s2CharCount[s2.charAt(i + s1.length()) - 'a']++;
             // decrease char at front
