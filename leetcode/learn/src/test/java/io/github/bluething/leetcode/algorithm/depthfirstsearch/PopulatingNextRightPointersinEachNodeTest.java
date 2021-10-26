@@ -34,6 +34,37 @@ public class PopulatingNextRightPointersinEachNodeTest {
         dfs(root.right);
     }
 
+    private Node connectUsingIterativeLevelOrderTraversal(Node root) {
+        if (root == null) {
+            return null;
+        }
+
+        // the level of depth
+        Node level = root;
+        while (level != null) {
+            // current node in current level
+            Node current = level;
+            while (current != null) {
+                // add reference of immediate right node in current level
+                if (current.left != null) {
+                    current.left.next = current.right;
+                }
+                // if the root have next node, add reference to the right child
+                if (current.right != null && current.next != null) {
+                    current.right.next = current.next.left;
+                }
+
+                // go to next node
+                current = current.next;
+            }
+
+            // go down
+            level = level.left;
+        }
+
+        return root;
+    }
+
     class Node {
         public int val;
         public Node left;
