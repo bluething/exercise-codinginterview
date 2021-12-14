@@ -15,6 +15,16 @@ public class FlippinganImageTest {
         Assert.assertArrayEquals(new int[][]{{1,1,0,0},{0,1,1,0},{0,0,0,1},{1,0,1,0}}, flipAndInvertImage(new int[][]{{1,1,0,0},{1,0,0,1},{0,1,1,1},{1,0,1,0}}));
     }
 
+    @Test
+    public void case03() {
+        Assert.assertArrayEquals(new int[][]{{1,0,0},{0,1,0},{1,1,1}}, flipAndInvertImage2(new int[][]{{1,1,0},{1,0,1},{0,0,0}}));
+    }
+
+    @Test
+    public void case04() {
+        Assert.assertArrayEquals(new int[][]{{1,1,0,0},{0,1,1,0},{0,0,0,1},{1,0,1,0}}, flipAndInvertImage2(new int[][]{{1,1,0,0},{1,0,0,1},{0,1,1,1},{1,0,1,0}}));
+    }
+
     public int[][] flipAndInvertImage(int[][] image) {
         int row = image.length;
         int col = image[0].length;
@@ -53,5 +63,25 @@ public class FlippinganImageTest {
         }
 
         return array;
+    }
+
+    // no need twice operation
+    // if the value from right and left are same, just flip them
+    // if they are different, don't do anything, flip then inverse will result the same value
+    public int[][] flipAndInvertImage2(int[][] image) {
+        for (int[] row : image) {
+            int i = 0;
+            int j = row.length - 1;
+            while (i <= j) {
+                if (row[i] == row[j]) {
+                    row[i] ^= 1;
+                    row[j] = row[i];
+                }
+                i++;
+                j--;
+            }
+        }
+
+        return image;
     }
 }
