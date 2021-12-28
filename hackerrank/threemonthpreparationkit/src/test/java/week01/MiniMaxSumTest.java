@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
+// Given five positive integers, find the minimum and maximum values that can be calculated by summing exactly four of the five integers.
+// Then print the respective minimum and maximum values as a single line of two space-separated long integers.
 public class MiniMaxSumTest {
     private final ByteArrayOutputStream output = new ByteArrayOutputStream();
     private final PrintStream originalOutput = System.out;
