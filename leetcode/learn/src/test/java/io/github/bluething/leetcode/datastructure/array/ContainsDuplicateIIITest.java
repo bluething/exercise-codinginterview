@@ -53,7 +53,7 @@ public class ContainsDuplicateIIITest {
         Assert.assertFalse(containsNearbyAlmostDuplicate(new int[]{1, 2}, 0, 1));
     }
 
-    // The idea is using a map as bucket (sliding windows)
+    // The idea is using a map as bucket
     // We map a range of values to a bucket
     // In each loop we look at the bucket to see if we already have the value
     // If we found it means we have separated values with distance <= t
