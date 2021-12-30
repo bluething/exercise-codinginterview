@@ -90,4 +90,65 @@ public class ContainsDuplicateIIITest {
 
         return isNearbyAlmostDuplicate;
     }
+
+    @Test
+    public void case09() {
+        Assert.assertTrue(containsNearbyAlmostDuplicate2(new int[]{1,2,3,1}, 3, 0));
+    }
+
+    @Test
+    public void case10() {
+        Assert.assertTrue(containsNearbyAlmostDuplicate2(new int[]{1,0,1,1}, 1, 2));
+    }
+
+    @Test
+    public void case11() {
+        Assert.assertFalse(containsNearbyAlmostDuplicate2(new int[]{1,5,9,1,5,9}, 2, 3));
+    }
+
+    @Test
+    public void case12() {
+        Assert.assertTrue(containsNearbyAlmostDuplicate2(new int[]{1,2,2,3,4,5}, 3, 0));
+    }
+
+    @Test
+    public void case13() {
+        Assert.assertFalse(containsNearbyAlmostDuplicate2(new int[]{0}, 0, 0));
+    }
+
+    @Test
+    public void case14() {
+        Assert.assertTrue(containsNearbyAlmostDuplicate2(new int[]{8,7,15,1,6,1,9,15}, 1, 3));
+    }
+
+    @Test
+    public void case15() {
+        Assert.assertFalse(containsNearbyAlmostDuplicate2(new int[]{2147483647,-1,2147483647}, 1, 2147483647));
+    }
+
+    @Test
+    public void case16() {
+        Assert.assertFalse(containsNearbyAlmostDuplicate2(new int[]{1, 2}, 0, 1));
+    }
+
+    // need to tune for large nums
+    private boolean containsNearbyAlmostDuplicate2(int[] nums, int k, int t) {
+        boolean isNearbyAlmostDuplicate = false;
+        int i = 0;
+        while (!isNearbyAlmostDuplicate && i < nums.length) {
+            for (int j = 0; j < nums.length; j++) {
+                if (i != j
+                        && (Math.abs((long)nums[i] - (long)nums[j]) <= t)
+                        && (Math.abs(i - j) <= k)) {
+                    isNearbyAlmostDuplicate = true;
+                    break;
+                } else {
+                    continue;
+                }
+            }
+            i++;
+        }
+
+        return isNearbyAlmostDuplicate;
+    }
 }
