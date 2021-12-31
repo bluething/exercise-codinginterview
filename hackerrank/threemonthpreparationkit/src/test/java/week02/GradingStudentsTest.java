@@ -27,6 +27,16 @@ public class GradingStudentsTest {
         Assertions.assertEquals(Arrays.asList(75, 67, 40, 33), gradingStudents(Arrays.asList(73, 67, 38, 33)));
     }
 
+    @Test
+    public void case03() {
+        Assertions.assertEquals(Arrays.asList(85, 29, 57), gradingStudents2(Arrays.asList(84, 29, 57)));
+    }
+
+    @Test
+    public void case04() {
+        Assertions.assertEquals(Arrays.asList(75, 67, 40, 33), gradingStudents2(Arrays.asList(73, 67, 38, 33)));
+    }
+
     private List<Integer> gradingStudents(List<Integer> grades) {
         List<Integer> roundedGrades = new ArrayList<>();
         int expectedRoundedGrade = 0;
@@ -44,6 +54,21 @@ public class GradingStudentsTest {
             }
 
             roundedGrades.add(roundedGrade);
+        }
+
+        return roundedGrades;
+    }
+
+    private List<Integer> gradingStudents2(List<Integer> grades) {
+        List<Integer> roundedGrades = new ArrayList<>();
+        int difference = 0;
+        for (Integer grade : grades) {
+            difference = grade % 5;
+            if (grade < 38 || difference < 3) {
+                roundedGrades.add(grade);
+            } else {
+                roundedGrades.add(grade - difference + 5);
+            }
         }
 
         return roundedGrades;
