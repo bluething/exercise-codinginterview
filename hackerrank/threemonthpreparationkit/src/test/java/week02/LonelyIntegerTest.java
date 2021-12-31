@@ -14,6 +14,11 @@ public class LonelyIntegerTest {
         Assertions.assertEquals(4, lonelyinteger(Arrays.asList(1, 2, 3, 4, 3, 2, 1)));
     }
 
+    @Test
+    public void case02() {
+        Assertions.assertEquals(4, lonelyinteger2(Arrays.asList(1, 2, 3, 4, 3, 2, 1)));
+    }
+
     private int lonelyinteger(List<Integer> a) {
         int[] counter = new int[101];
         for (int i = 0; i < a.size(); i++) {
@@ -26,6 +31,19 @@ public class LonelyIntegerTest {
                 lonely = i;
                 break;
             }
+        }
+
+        return lonely;
+    }
+
+    // keep XORing the values till all but one cancel each other out
+    // 1^1 = 0
+    // 2^2 = 0
+    // 5^1 = 4
+    private int lonelyinteger2(List<Integer> a) {
+        int lonely = a.get(0);
+        for (int i = 1; i < a.size(); i++) {
+            lonely ^= a.get(i);
         }
 
         return lonely;
