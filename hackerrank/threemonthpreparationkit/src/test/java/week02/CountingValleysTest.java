@@ -16,6 +16,11 @@ public class CountingValleysTest {
         Assertions.assertEquals(1, countingValleys(8, "UDDDUDUU"));
     }
 
+    @Test
+    public void case02() {
+        Assertions.assertEquals(1, countingValleys2(8, "UDDDUDUU"));
+    }
+
     // The key is we must know when we enter the valley (seaLevel below 0) and when we up to the surface
     private int countingValleys(int steps, String path) {
         int numOfValleys = 0;
@@ -37,6 +42,26 @@ public class CountingValleysTest {
                 enterTheValley = true;
             } else {
                 enterTheValley = false;
+            }
+        }
+
+        return numOfValleys;
+    }
+
+    // Another approach to detect if we finished climb up the valley
+    private int countingValleys2(int steps, String path) {
+        int numOfValleys = 0;
+        int seaLevel = 0;
+        char[] pathChr = path.toCharArray();
+        for (int i = 0; i < pathChr.length; i++) {
+            if (pathChr[i] == 'U') {
+                seaLevel++;
+            } else {
+                seaLevel--;
+            }
+
+            if (seaLevel == 0 && pathChr[i] == 'U') {
+                numOfValleys++;
             }
         }
 
