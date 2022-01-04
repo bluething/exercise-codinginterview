@@ -29,17 +29,13 @@ public class ReshapeTheMatrixTest {
     }
 
     private int[][] transpose(int[][] matrix) {
-        int temp;
+        int[][] transposedMatrix = new int[matrix[0].length][matrix.length];
         for (int i = 0; i < matrix.length; i++) {
-            for (int j = i; j < matrix[0].length; j++) {
-                if (i != j) {
-                    temp = matrix[i][j];
-                    matrix[i][j] = matrix[j][i];
-                    matrix[j][i] = temp;
-                }
+            for (int j = 0; j < matrix[0].length; j++) {
+                transposedMatrix[j][i] = matrix[i][j];
             }
         }
-        return matrix;
+        return transposedMatrix;
     }
 
     private int[] from2Dto1D(int[][] matrix) {
