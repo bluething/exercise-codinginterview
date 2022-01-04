@@ -12,20 +12,20 @@ import java.util.Set;
 public class StringManipulationTest {
     @Test
     public void case01() {
-        Assertions.assertArrayEquals(new int[]{0, 2, 3, 4, 6, 8, 11, 13, 14, 15, 17, 18, 19, 20, 21},
-                convert("Pegipegi provides various online reservation services"));
+        Assertions.assertArrayEquals(new int[]{0, 3, 4, 8, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20},
+                convert("Neque porro quisquam est qui dolorem ipsum quia dolor sit amet"));
     }
 
     @Test
     public void case02() {
-        Assertions.assertArrayEquals(new char[]{'a', 'c', 'd', 'e', 'g', 'i', 'l', 'n', 'o', 'p', 'r', 's', 't', 'u', 'v'},
-                stringToUniqueSorted("Pegipegi provides various online reservation services"));
+        Assertions.assertArrayEquals(new char[]{'a', 'd', 'e', 'i', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u'},
+                stringToUniqueSorted("Neque porro quisquam est qui dolorem ipsum quia dolor sit amet"));
     }
 
     @Test
     public void case03() {
-        Assertions.assertArrayEquals(new int[]{0, 2, 3, 4, 6, 8, 11, 13, 14, 15, 17, 18, 19, 20, 21},
-                uniqueSortedCharsToIntArray(new char[]{'a', 'c', 'd', 'e', 'g', 'i', 'l', 'n', 'o', 'p', 'r', 's', 't', 'u', 'v'}));
+        Assertions.assertArrayEquals(new int[]{0, 3, 4, 8, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20},
+                uniqueSortedCharsToIntArray(new char[]{'a', 'd', 'e', 'i', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u'}));
     }
 
     private int[] convert(String input) {
