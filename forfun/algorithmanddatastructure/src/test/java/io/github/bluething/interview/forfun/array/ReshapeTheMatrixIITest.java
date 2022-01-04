@@ -43,16 +43,13 @@ public class ReshapeTheMatrixIITest {
     }
 
     private int[][] transposeTheMatrix(int[][] matrix) {
-        int temp = 0;
+        int[][] transposedMatrix = new int[matrix[0].length][matrix.length];
         for (int i = 0; i < matrix.length; i++) {
-            for (int j = i; j < matrix[0].length; j++) {
-                temp = matrix[i][j];
-                matrix[i][j] = matrix[j][i];
-                matrix[j][i] = temp;
+            for (int j = 0; j < matrix[0].length; j++) {
+                transposedMatrix[j][i] = matrix[i][j];
             }
         }
-
-        return matrix;
+        return transposedMatrix;
     }
 
     private int[][] reverseTheMatrix(int[][] matrix) {
