@@ -3,7 +3,7 @@ package io.github.bluething.interview.forfun.array;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-// From two-dimensional array.
+// From 2D array.
 // Transpose the array
 // Flatten the transposed array
 
