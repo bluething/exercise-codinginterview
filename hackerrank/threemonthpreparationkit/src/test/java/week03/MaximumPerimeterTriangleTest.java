@@ -72,6 +72,16 @@ public class MaximumPerimeterTriangleTest {
         )));
     }
 
+    // The important thing is understood what is non-degenerate triangle
+    // After that we only need to check every triplet that satisfy the constraint
+    // To make the solution simpler, sort the list, and check triplet from 3 consecutive elements
+    // Why?
+    // If arr[i] < arr[i+1] < arr[i+2] (sorted) can’t form a non-degenerate triangle then
+    // arr[i-1], arr[i+1] and arr[i+2] or arr[i], arr[i+1] and arr[i+3] can’t form a non-degenerate triangle because
+    // arr[i-1] + arr[i+1] will be even less than arr[i] + arr[i+1] for case arr[i-1], arr[i+1] and arr[i+2]
+    // arr[i] + arr[i+1] must be less than arr[i+3] for case arr[i], arr[i+1] and arr[i+3]
+    //
+    // The problem is constraint of stick value, we can't use int type when add the value
     private List<Integer> maximumPerimeterTriangle(List<Integer> sticks) {
         List<Integer> points = Arrays.asList(-1);
         sticks.sort(Comparator.naturalOrder());
@@ -90,6 +100,10 @@ public class MaximumPerimeterTriangleTest {
         return points;
     }
 
+    // This solution eliminate the need of cast to long
+    // Because we only care of the longest perimeter we sort the sticks desc
+    // If we found the triplet that construct non-degenerate triangle then that is the answer
+    // Don't forget to put the answer in right order
     private List<Integer> maximumPerimeterTriangle2(List<Integer> sticks) {
         List<Integer> points = Arrays.asList(-1);
         sticks.sort(Comparator.reverseOrder());
