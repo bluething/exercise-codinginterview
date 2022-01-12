@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
+// Given an array of n distinct integers, transform the array into a zigzag sequence by permuting the array elements.
+// A sequence will be called a zigzag sequence if the first  elements in the sequence are in increasing order and the last k elements are in decreasing order, where k=(n+1)/2.
+// You need to find the lexicographically the smallest zigzag sequence of the given array.
 public class ZigZagSequenceTest {
     @Test
     public void case01() {
@@ -20,6 +23,8 @@ public class ZigZagSequenceTest {
         Assertions.assertArrayEquals(new int[]{1, 2, 3, 7, 6, 5, 4}, input);
     }
 
+    // Swap mid and tail
+    // iterate mid to tail, swap mid+1 with tail-1
     private void findZigZagSequence(int [] a, int n) {
         Arrays.sort(a);
         int mid = n / 2;
