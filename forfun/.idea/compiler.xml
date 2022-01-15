@@ -12,7 +12,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="algorithmanddatastructure" target="13" />
-      <module name="mathisfun" target="1.5" />
+      <module name="mathisfun" target="13" />
     </bytecodeTargetLevel>
   </component>
 </project>
