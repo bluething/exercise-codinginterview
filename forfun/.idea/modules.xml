@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/algorithmanddatastructure/algorithmanddatastructure.iml" filepath="$PROJECT_DIR$/algorithmanddatastructure/algorithmanddatastructure.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/forfun.iml" filepath="$PROJECT_DIR$/.idea/forfun.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mathisfun/mathisfun.iml" filepath="$PROJECT_DIR$/mathisfun/mathisfun.iml" />
     </modules>
   </component>
 </project>
