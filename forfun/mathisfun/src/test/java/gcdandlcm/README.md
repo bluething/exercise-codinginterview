@@ -17,7 +17,7 @@ For example, GCD of 40 and 64.
 - 40 / 24 = 1 with a remainder of 16.  
 - 24 / 16 = 1 with a remainder of 8.  
 - 16 / 8 = 2 with a remainder of 0.
-The gcdandlcm is the last value we use as a divisor, 8.
+The gcd is the last value we use as a divisor, 8.
 
 ### LCM
 
@@ -28,7 +28,7 @@ LCM == KPK.
 #### Euclidean Algorithm
 
 The absolute value of the product of two numbers is equal to the product of their GCD and LCM.  
-lcm(a, b) = |a * b|/gcdandlcm(a, b)
+lcm(a, b) = |a * b|/gcd(a, b)
 
 ### References:
 
