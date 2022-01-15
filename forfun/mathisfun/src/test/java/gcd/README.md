@@ -1,3 +1,5 @@
+### GCD
+
 Greatest Common Divisor (GCD) or Highest Common Factor (HCF) of two positive integers is the largest positive integer that divides both numbers without remainder. It is useful for reducing fractions to be in its lowest terms.
 
 GCD == FPB
@@ -17,7 +19,7 @@ For example, GCD of 40 and 64.
 - 16 / 8 = 2 with a remainder of 0.
 The gcd is the last value we use as a divisor, 8.
 
-#### References:
+### References:
 
 [Greatest Common Divisor and Least Common Multiple](https://www.idomaths.com/hcflcm.php)  
 [Finding Greatest Common Divisor in Java](https://www.baeldung.com/java-greatest-common-divisor)
