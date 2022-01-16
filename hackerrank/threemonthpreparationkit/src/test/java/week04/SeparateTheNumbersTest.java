@@ -38,6 +38,18 @@ public class SeparateTheNumbersTest {
         Assertions.assertEquals("NO", output.toString());
     }
 
+    @Test
+    public void case03() {
+        separateNumbers2("99100");
+        Assertions.assertEquals("YES 99", output.toString());
+    }
+
+    @Test
+    public void case04() {
+        separateNumbers2("101103");
+        Assertions.assertEquals("NO", output.toString());
+    }
+
     // The idea is checking from left to right
     // Start with 1 digit into s.length() / 2 (compare the half of the string)
     // For each loop, we check if consecutive string meet the criteria
@@ -75,5 +87,25 @@ public class SeparateTheNumbersTest {
         }
 
         return isBeauty(expectedRight, right.substring(expectedRight.length()));
+    }
+
+    // In this algorithm we try to construct the expected string
+    private void separateNumbers2(String s) {
+        boolean isValid = false;
+        String left = "";
+        for (int i = 1; i <= s.length() / 2; i++) {
+            left = s.substring(0, i);
+            long leftValue = Long.valueOf(left);
+            StringBuilder expectedRight = new StringBuilder(left);
+            while (expectedRight.length() < s.length()) {
+                expectedRight.append(++leftValue);
+            }
+            if (expectedRight.toString().equals(s)) {
+                isValid = true;
+                break;
+            }
+        }
+
+        System.out.print(isValid ? "YES " + left : "NO");
     }
 }
