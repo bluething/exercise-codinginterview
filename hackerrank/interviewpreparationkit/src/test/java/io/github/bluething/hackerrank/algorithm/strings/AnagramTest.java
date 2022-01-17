@@ -33,14 +33,14 @@ public class AnagramTest {
         }
 
         int result = 0;
-        Map<Character, Integer> freqChar1 = new HashMap<>();
+        Map<Character, Integer> freqChar = new HashMap<>();
         for (int i = 0; i < s.length() / 2; i++) {
-            freqChar1.put(s.charAt(i), freqChar1.getOrDefault(s.charAt(i), 0) + 1);
+            freqChar.put(s.charAt(i), freqChar.getOrDefault(s.charAt(i), 0) + 1);
         }
 
         for (int i = s.length() / 2; i < s.length(); i++) {
-            if (freqChar1.containsKey(s.charAt(i)) && freqChar1.get(s.charAt(i)) > 0) {
-                freqChar1.put(s.charAt(i), freqChar1.get(s.charAt(i)) - 1);
+            if (freqChar.containsKey(s.charAt(i)) && freqChar.get(s.charAt(i)) > 0) {
+                freqChar.put(s.charAt(i), freqChar.get(s.charAt(i)) - 1);
             } else {
                 result++;
             }
