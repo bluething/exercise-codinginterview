@@ -27,7 +27,7 @@ public class SmartNumber2Test {
 
     private boolean isSmartNumber(int num) {
         int val = (int) Math.sqrt(num);
-        if(num / val == 1)
+        if(num == val * val)
             return true;
         return false;
     }
