@@ -58,6 +58,32 @@ public class TheFullCountingSortTest {
         Assertions.assertEquals("- - - - - to be or not to be - that is the question - - - -", output.toString());
     }
 
+    @Test
+    public void case02() {
+        List<List<String >> arr = Arrays.asList(Arrays.asList("0", "ab"),
+                Arrays.asList("6", "cd"),
+                Arrays.asList("0", "ef"),
+                Arrays.asList("6", "gh"),
+                Arrays.asList("4", "ij"),
+                Arrays.asList("0", "ab"),
+                Arrays.asList("6", "cd"),
+                Arrays.asList("0", "ef"),
+                Arrays.asList("6", "gh"),
+                Arrays.asList("0", "ij"),
+                Arrays.asList("4", "that"),
+                Arrays.asList("3", "be"),
+                Arrays.asList("0", "to"),
+                Arrays.asList("1", "be"),
+                Arrays.asList("5", "question"),
+                Arrays.asList("1", "or"),
+                Arrays.asList("2", "not"),
+                Arrays.asList("4", "is"),
+                Arrays.asList("2", "to"),
+                Arrays.asList("4", "the"));
+        countSort2(arr);
+        Assertions.assertEquals("- - - - - to be or not to be - that is the question - - - -", output.toString());
+    }
+
     // Time limit exceeded
     private void countSort(List<List<String>> arr) {
         List<List<String>> sortedArr = new ArrayList<>();
@@ -81,5 +107,27 @@ public class TheFullCountingSortTest {
 
         System.out.print(sb.toString().trim());
 
+    }
+
+    // Time limit exceeded
+    private void countSort2(List<List<String>> arr) {
+        List<StringBuilder> sortedArr = new ArrayList<>();
+        for (int i = 0; i < 101; i++) {
+            sortedArr.add(new StringBuilder(""));
+        }
+        for (int i = 0; i < arr.size() / 2; i++) {
+            sortedArr.get(Integer.valueOf(arr.get(i).get(0))).append("- ");
+        }
+
+        for (int i = (arr.size() / 2); i < arr.size(); i++) {
+            sortedArr.get(Integer.valueOf(arr.get(i).get(0))).append(arr.get(i).get(1)).append(" ");
+        }
+
+        StringBuilder sb = new StringBuilder("");
+        for (StringBuilder stringBuilder : sortedArr) {
+            sb.append(stringBuilder);
+        }
+
+        System.out.print(sb.toString().trim());
     }
 }
