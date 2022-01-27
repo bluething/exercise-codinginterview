@@ -30,6 +30,11 @@ public class SansaAndXORTest {
         Assertions.assertEquals(6, sansaXor(Arrays.asList(3, 4, 5)));
     }
 
+    @Test
+    public void case02() {
+        Assertions.assertEquals(6, sansaXor2(Arrays.asList(3, 4, 5)));
+    }
+
     // Time limit exceeded
     private int sansaXor(List<Integer> arr) {
         int result = 0;
@@ -38,6 +43,19 @@ public class SansaAndXORTest {
                 for (int k = i; k <= j; k++) {
                     result ^= arr.get(k);
                 }
+            }
+        }
+
+        return result;
+    }
+
+    // 1. If the size of the list is even the xor result will 0
+    // 2. If the size of the list is odd the net result will be taking (size+1)/2 elements at a time.
+    private int sansaXor2(List<Integer> arr) {
+        int result = 0;
+        if (arr.size() % 2 != 0) {
+            for (int i = 0; i < arr.size(); i += 2) {
+                result ^= arr.get(i);
             }
         }
 
