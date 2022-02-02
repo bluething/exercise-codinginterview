@@ -22,6 +22,11 @@ public class GamingArray1Test {
         Assertions.assertEquals("BOB", gamingArray(Arrays.asList(2, 3, 5, 4, 1)));
     }
 
+    @Test
+    public void case02() {
+        Assertions.assertEquals("BOB", gamingArray2(Arrays.asList(2, 3, 5, 4, 1)));
+    }
+
     // hit time limit exceed
     private String gamingArray(List<Integer> arr) {
         int end = arr.size();
@@ -44,5 +49,20 @@ public class GamingArray1Test {
         counter++;
 
         return counter % 2 == 0 ? "BOB" : "ANDY";
+    }
+
+    // The idea is to count how many times the array split
+    // Just count how many we find max value from left to right
+    private String gamingArray2(List<Integer> arr) {
+        int max = Integer.MIN_VALUE;
+        int counter = 0;
+        for (int i = 0; i < arr.size(); i++) {
+            if (arr.get(i) > max) {
+                max = arr.get(i);
+                counter++;
+            }
+        }
+
+        return counter % 2 == 0 ? "ANDY" : "BOB";
     }
 }
