@@ -25,9 +25,28 @@ public class SumvsXORTest {
         Assertions.assertEquals(4, sumXor(4L));
     }
 
-    @Test
     public void case04() {
         Assertions.assertEquals(1099511627776L, sumXor(1099511627776L));
+    }
+
+    @Test
+    public void case05() {
+        Assertions.assertEquals(4, sumXor2(10L));
+    }
+
+    @Test
+    public void case06() {
+        Assertions.assertEquals(2, sumXor2(5L));
+    }
+
+    @Test
+    public void case07() {
+        Assertions.assertEquals(4, sumXor2(4L));
+    }
+
+    @Test
+    public void case08() {
+        Assertions.assertEquals(1099511627776L, sumXor2(1099511627776L));
     }
 
     // Time limit exceeded
@@ -39,5 +58,22 @@ public class SumvsXORTest {
             }
         }
         return counter;
+    }
+
+    // We need to count how many 0 bit from n
+    // The answer is 2 power of num of 0 bit
+    // Changing 0 bit with 0 or 1 and changing 1 bit with 0 or 1 fulfil the condition (n + x = n ^ x)
+    // How many combination 0 bit can be replaced with 0 and 1.
+    private long sumXor2(long n) {
+        long counter = 0L;
+        while (n > 0) {
+            if ((n & 1) == 0) {
+                counter++;
+            }
+
+            n >>= 1;
+        }
+
+        return (long) Math.pow(2, counter);
     }
 }
