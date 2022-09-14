@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/ds-studyplan" />
             <option value="$PROJECT_DIR$/learn" />
+            <option value="$PROJECT_DIR$/leetcode75" />
           </set>
         </option>
       </GradleProjectSettings>
