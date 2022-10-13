@@ -43,4 +43,14 @@ public class sumOfAllOddLengthSubArraysTest {
 
         return sum;
     }
+
+    // https://leetcode.com/problems/sum-of-all-odd-length-subarrays/discuss/980310/Dew-It-or-O(n)-1-pass-or-(Almost)-No-math
+    // How many times does a particular element a[i] contribute to the final sum? The count of all odd-sized sized sub arrays that include this element a[i].
+    // How do you compute a[i]? A subarray is odd-sized if both its start and end indices are even OR both are odd.
+    // For any element a[i], we keep separate count of odd and even numbered indices to the left and right of it - the ones to the left would be starts of the sub arrays and the ones to the right would be the ends.
+    //
+    //
+    private int sumOddLengthSubArraysWithCountingElementOccurrence(int[] arr) {
+
+    }
 }
