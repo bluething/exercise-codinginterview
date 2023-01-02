@@ -2,7 +2,14 @@ struct Solution {}
 
 impl Solution {
     pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
-
+        let nums_size = nums.len();
+        for i in 0..nums_size - 1 {
+            for j in i+1..nums_size {
+                if nums[i] + nums[j] == target {
+                    return vec![i as i32, j as i32]
+                }
+            }
+        }
 
         vec![]
     }
